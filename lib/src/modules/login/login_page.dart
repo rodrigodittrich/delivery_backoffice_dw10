@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/ui/helpers/size_extensions.dart';
-import '../../../core/ui/styles/colors_app.dart';
-import '../../../core/ui/styles/text_styles.dart';
+import '../../core/ui/helpers/size_extensions.dart';
+import '../../core/ui/styles/colors_app.dart';
+import '../../core/ui/styles/text_styles.dart';
 
 class LoginPage extends StatelessWidget {
 

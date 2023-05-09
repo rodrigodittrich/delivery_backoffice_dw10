@@ -1,10 +1,7 @@
-import '../../../core/ui/helpers/messages.dart';
+import '../../core/ui/helpers/messages.dart';
 import 'package:flutter/material.dart';
-import '../../../core/env/env.dart';
-import '../../../core/ui/helpers/loader.dart';
-import '../../../core/ui/helpers/size_extensions.dart';
-import '../../../core/ui/styles/colors_app.dart';
-import '../../../core/ui/styles/text_styles.dart';
+import '../../core/ui/helpers/loader.dart';
+import '../../core/ui/styles/colors_app.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -42,7 +39,7 @@ class _HomePageState extends State<HomePage> with Loader, Messages  {
                   height: 50,
                   //width: context.percentWidth(.5),
                   //height: context.percentHeight(.9),
-                  child: ElevatedButton(onPressed: (){}, child: Text('botão')),
+                  child: ElevatedButton(onPressed: (){}, child: const Text('botão')),
                 ),
                ),
             ],
