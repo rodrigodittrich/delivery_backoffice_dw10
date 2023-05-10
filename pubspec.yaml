@@ -15,6 +15,7 @@ dependencies:
   flutter_modular: ^5.0.3
   loading_animation_widget: ^1.2.0+4
   mobx: ^2.2.0
+  validatorless: ^1.2.3
 
 dev_dependencies:
   flutter_test:
