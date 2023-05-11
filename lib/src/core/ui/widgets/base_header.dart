@@ -61,16 +61,19 @@ class BaseHeader extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                width: constraints.maxWidth * .15,
-                height: 48,
-                child: OutlinedButton.icon(
-                  onPressed: buttonPressed, 
-                  icon: Icon(
-                    Icons.add,
-                    size: constraints.maxWidth * 0.02,
-                  ), 
-                  label: Text(buttonLabel),
+              Visibility(
+                visible: addButton,
+                child: SizedBox(
+                  width: constraints.maxWidth * .15,
+                  height: 48,
+                  child: OutlinedButton.icon(
+                    onPressed: buttonPressed, 
+                    icon: Icon(
+                      Icons.add,
+                      size: constraints.maxWidth * 0.02,
+                    ), 
+                    label: Text(buttonLabel),
+                  ),
                 ),
               )
             ],
