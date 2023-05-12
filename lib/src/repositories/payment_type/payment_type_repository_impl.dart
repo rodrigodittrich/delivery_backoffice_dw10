@@ -16,7 +16,7 @@ class PaymentTypeRepositoryImpl implements PaymentTypeRepository {
       final paymentResult = await _dio.auth().get(
         '/payment-types',
         queryParameters: {
-          if(enabled != null) 'enable': enabled
+          if(enabled != null) 'enabled': enabled
         },
       );
       return paymentResult.data.map<PaymentTypeModel>((p) => PaymentTypeModel.fromMap(p)).toList();
@@ -46,7 +46,7 @@ class PaymentTypeRepositoryImpl implements PaymentTypeRepository {
 
       if(model.id != null) {
         await client.put(
-          '/payment-types/',
+          '/payment-types/${model.id}',
           data: model.toMap(),
         );
       } else {
