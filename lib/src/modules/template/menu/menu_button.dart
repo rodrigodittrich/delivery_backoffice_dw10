@@ -12,7 +12,7 @@ class MenuButton extends StatelessWidget {
     super.key, 
     required this.menu, 
     this.menuSelected,
-    required this.onPressed
+    required this.onPressed,
   });
 
    @override
