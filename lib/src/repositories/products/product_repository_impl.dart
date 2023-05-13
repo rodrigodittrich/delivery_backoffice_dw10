@@ -16,7 +16,7 @@ class ProductRepositoryImpl implements ProductRepository {
   @override
   Future<void> deleteProduct(int id) async {
     try {
-        await _dio.auth().put('/products/$id', data: {
+        await _dio.auth().delete('/products/$id', data: {
           'anabled': false,
         },);
       } on DioError catch (e, s) {
@@ -56,8 +56,6 @@ class ProductRepositoryImpl implements ProductRepository {
   Future<void> save(ProductModel productModel) async {
     try {
       final client = _dio.auth();
-
-      print(productModel.toMap());
 
       if(productModel.id != null) {
         await client.put(

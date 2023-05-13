@@ -34,6 +34,9 @@ abstract class ProductDetailControllerBase with Store {
   @readonly
   String? _imagePath;
 
+  @readonly
+  ProductModel? _productModel;
+
   @action
   Future<void> uploadImageProduct(Uint8List file, String fileName) async {
     _status = ProductDetailStateStatus.loading;
@@ -46,17 +49,52 @@ abstract class ProductDetailControllerBase with Store {
     try {
       _status = ProductDetailStateStatus.loading;
       final productModel = ProductModel(
+        id: _productModel?.id,
         name: name, 
         description: description, 
         price: price, 
         image: _imagePath!,
-        enabled: true,
+        enabled: _productModel?.enabled??true,
       );      
       _productRepository.save(productModel);
       _status = ProductDetailStateStatus.saved;
     } catch (e, s) {
       log('Erro ao salvar produto...', error: e, stackTrace: s);
       _status = ProductDetailStateStatus.error;
+    }
+  }
+
+  @action
+  Future<void> loadProduct({int? id}) async {
+    try {
+      _status = ProductDetailStateStatus.loading;
+      _productModel = null;
+      _imagePath = null;
+      if(id != null) {
+        _productModel = await _productRepository.getProduct(id);
+        _imagePath = _productModel!.image;
+      }      
+      _status = ProductDetailStateStatus.loaded;
+    } catch (e, s) {
+      log('Erro ao carregar produto...', error: e, stackTrace: s);
+      _status = ProductDetailStateStatus.error;
+    }
+  }
+
+  Future<void> deleteProduct() async {
+    try {
+      _status = ProductDetailStateStatus.loading;     
+      if(_productModel != null && _productModel?.id != null) {
+        await _productRepository.deleteProduct(_productModel!.id!);
+        _status = ProductDetailStateStatus.deleted;
+      }
+      await Future.delayed(Duration.zero);
+      _status = ProductDetailStateStatus.error;
+      _errorMessage = 'Produto não cadastrado';
+    } catch (e, s) {
+      log('Erro ao deletar produto...', error: e, stackTrace: s);
+      _status = ProductDetailStateStatus.error;
+      _errorMessage = 'Produto não cadastrado';
     }
   }
 }
